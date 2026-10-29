@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket Up Web</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="logo">P</div>
+          <div>
+            <div class="brand-title">Pocket Up</div>
+            <div class="brand-subtitle">Web Builder</div>
+          </div>
+        </div>
+
+        <nav class="top-actions">
+          <button class="soft-btn active">Проекты</button>
+          <button class="soft-btn">Редактор</button>
+          <button class="soft-btn">Сборка</button>
+        </nav>
+
+        <div class="topbar-tools">
+          <button id="newProjectBtn" class="primary-btn">Новый проект</button>
+          <button id="saveBtn" class="secondary-btn">Сохранить</button>
+        </div>
+      </header>
+
+      <div class="export-strip">
+        <div class="language-switcher" id="languageSwitcher">
+          <button class="lang-btn active" data-lang="python">Python</button>
+          <button class="lang-btn" data-lang="cpp">C++</button>
+          <button class="lang-btn" data-lang="rust">Rust</button>
+          <button class="lang-btn" data-lang="js">JS</button>
+        </div>
+      </div>
+
+      <main class="workspace">
+        <aside class="sidebar left-panel">
+          <div class="panel-header">
+            <h3>Проекты</h3>
+            <button id="addProjectBtn" class="tiny-btn">+</button>
+          </div>
+          <div id="projectList" class="project-list"></div>
+        </aside>
+
+        <section class="studio">
+          <div class="studio-toolbar">
+            <div class="toolbar-group">
+              <button class="toolbar-btn">Запуск</button>
+              <button class="toolbar-btn">Пауза</button>
+              <button class="toolbar-btn">Предпросмотр</button>
+            </div>
+            <div class="toolbar-group">
+              <span id="currentProjectName">Project 1</span>
+            </div>
+          </div>
+
+          <div class="canvas-wrap">
+            <div id="workspace" class="workspace-canvas" aria-label="workspace">
+              <div class="empty-state" id="emptyState">
+                <p>Перетащите блоки сюда</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="sidebar right-panel">
+          <div class="panel-header">
+            <h3>Блоки</h3>
+            <button id="addCustomBlockBtn" class="tiny-btn">+ свой блок</button>
+          </div>
+          <div id="palette" class="palette"></div>
+        </aside>
+      </main>
+
+      <section class="bottom-panel">
+        <div class="bottom-header">
+          <h3>Код</h3>
+          <button id="copyCodeBtn" class="secondary-btn small">Копировать</button>
+        </div>
+        <pre id="codePreview" class="code-preview"></pre>
+      </section>
+    </div>
+
+    <div id="customBlockModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3>Создать свой блок</h3>
+          <button id="closeCustomBlockModal" class="tiny-btn">✕</button>
+        </div>
+
+        <form id="customBlockForm" class="custom-block-form">
+          <label>
+            <span>Название</span>
+            <input type="text" name="name" placeholder="Например: HTTP GET" required />
+          </label>
+
+          <label>
+            <span>Категория</span>
+            <input type="text" name="category" value="Custom" required />
+          </label>
+
+          <label>
+            <span>Python шаблон</span>
+            <textarea name="pythonTemplate" rows="3" required>print("hello")</textarea>
+          </label>
+
+          <label>
+            <span>C++ шаблон</span>
+            <textarea name="cppTemplate" rows="3" required>std::cout &lt;&lt; "hello" &lt;&lt; std::endl;</textarea>
+          </label>
+
+          <label>
+            <span>Rust шаблон</span>
+            <textarea name="rustTemplate" rows="3" required>println!("hello");</textarea>
+          </label>
+
+          <label>
+            <span>JS шаблон</span>
+            <textarea name="jsTemplate" rows="3" required>console.log("hello")</textarea>
+          </label>
+
+          <div class="modal-actions">
+            <button type="button" id="cancelCustomBlock" class="secondary-btn">Отмена</button>
+            <button type="submit" class="primary-btn">Сохранить блок</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
